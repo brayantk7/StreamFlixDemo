@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="referrer" content="no-referrer">
+    <title>StreamFlix AI</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-dark text-white">
+
+    <nav class="navbar navbar-dark border-bottom border-secondary mb-4 px-4 py-3">
+        <a class="navbar-brand text-danger fw-bold fs-2 tracking-wide" href="#">STREAMFLIX</a>
+    </nav>
+
+    <div class="container-fluid px-4">
+        <div class="row g-3 mb-5 bg-black p-4 rounded border border-secondary shadow">
+            <div class="col-md-2">
+                <input type="text" id="userName" class="form-control bg-dark text-white border-secondary" placeholder="Usuario" value="Brayan">
+            </div>
+            <div class="col-md-2">
+                <input type="number" id="userAge" class="form-control bg-dark text-white border-secondary" placeholder="Edad" value="19">
+            </div>
+            <div class="col-md-2">
+                <select id="userGenre" class="form-select bg-dark text-white border-secondary">
+                    <option value="Anime">Anime</option>
+                    <option value="Accion">Acción</option>
+                    <option value="SciFi">Ciencia Ficción</option>
+                </select>
+            </div>
+            <div class="col-md-2">
+                <select id="userMood" class="form-select bg-dark text-white border-secondary">
+                    <option value="Intenso">Intenso</option>
+                    <option value="Deep">Profundo</option>
+                    <option value="Relax">Relajado</option>
+                </select>
+            </div>
+            <div class="col-md-2">
+                <select id="userTime" class="form-select bg-dark text-white border-secondary">
+                    <option value="Maraton">+4 hrs</option>
+                    <option value="Corto">< 2 hrs</option>
+                </select>
+            </div>
+            <div class="col-md-2">
+                <button id="btnProcesar" class="btn btn-danger w-100 fw-bold h-100">PROCESAR IA</button>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-3 mb-4">
+                <h4 class="border-start border-danger border-4 ps-2 mb-3">Top Match</h4>
+                <div class="card bg-black border-secondary shadow-lg custom-card cursor-pointer" id="mainCard" onclick="abrirDetallesModal()">
+                    <span id="badgeMatch" class="badge bg-success position-absolute top-0 start-0 m-2 d-none z-3">99.4% Match</span>
+                    <img id="mainImage" src="https://via.placeholder.com/600x900/111/333?text=Esperando+IA..." class="card-img-top main-poster" alt="Poster">
+                    <div class="card-img-overlay d-flex flex-column justify-content-end gradient-overlay">
+                        <h3 id="mainTitle" class="card-title fw-bold"></h3>
+                        <p id="mainMetadata" class="card-text text-light small"></p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-9">
+                <h4 class="mb-3">Exploración por Similitud</h4>
+                <div class="row g-3" id="gridContainer"></div>
+
+                <div class="mt-4 bg-black border border-secondary rounded p-3 console-box">
+                    <div class="d-flex align-items-center border-bottom border-secondary pb-2 mb-2">
+                        <div class="status-dot bg-danger"></div>
+                        <div class="status-dot bg-warning"></div>
+                        <div class="status-dot bg-success"></div>
+                        <span class="text-secondary small font-monospace ms-2">Terminal Backend & API Network</span>
+                    </div>
+                    <div id="javaConsole" class="font-monospace text-success small overflow-auto console-text">
+                        <span>> Sistema inicializado. Esperando solicitudes...</span><br>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="movieModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content bg-dark text-white border-secondary shadow-lg">
+                <div class="modal-header border-bottom border-secondary">
+                    <h5 class="modal-title fw-bold fs-3 text-danger" id="modalTitle">Título</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body p-0">
+                    <div class="row g-0">
+                        <div class="col-md-4">
+                            <img id="modalImage" src="" class="img-fluid rounded-start w-100" style="height: 100%; object-fit: cover;" alt="...">
+                        </div>
+                        <div class="col-md-8 p-4 d-flex flex-column">
+                            <div class="mb-3 d-flex gap-2">
+                                <span class="badge bg-danger" id="modalScore"></span>
+                                <span class="badge bg-secondary" id="modalLanguage"></span>
+                                <span class="badge bg-secondary" id="modalPremiered"></span>
+                            </div>
+                            <div id="modalSummary" class="fs-6 text-light mb-auto"></div>
+                            <button class="btn btn-danger fw-bold mt-4">REPRODUCIR AHORA</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>

@@ -3,8 +3,11 @@ package core;
 import models.Movie;
 import models.User;
 
+/**
+ * Represents a node in the recommendation decision tree.
+ * Handles both attribute evaluation nodes and leaf nodes (final recommendations).
+ */
 public class DecisionTreeNode {
-
     private String atributoPrueba;
     private String valorEsperado;
     private DecisionTreeNode nodoSiCumple;
@@ -24,8 +27,9 @@ public class DecisionTreeNode {
     }
 
     /**
-     * MÉTODO RECURSIVO: Este es el corazón del algoritmo.
-     * Se llama a sí mismo navegando por las ramas hasta encontrar una película.
+     * Recursively traverses the tree based on user attributes to find a recommendation.
+     * @param usuario The user profile to evaluate.
+     * @return The recommended Movie object.
      */
     public Movie evaluar(User usuario) {
         if (this.recomendacionFinal != null) {

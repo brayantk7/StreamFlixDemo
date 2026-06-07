@@ -1,0 +1,11 @@
+.tracking-wide { letter-spacing: 2px; }
+.custom-card { transition: transform 0.3s ease; overflow: hidden; }
+.custom-card:hover { transform: scale(1.02); z-index: 10; border-color: #dc3545 !important; }
+.main-poster { height: 450px; object-fit: cover; }
+.grid-poster { height: 200px; object-fit: cover; width: 100%; transition: transform 0.3s; }
+.grid-poster:hover { transform: scale(1.1); }
+.gradient-overlay { background: linear-gradient(to top, rgba(0,0,0,0.9), transparent); }
+.console-box { height: 220px; display: flex; flex-direction: column; }
+.console-text { flex-grow: 1; }
+.status-dot { width: 12px; height: 12px; border-radius: 50%; margin-right: 6px; }
+.cursor-pointer { cursor: pointer; }
