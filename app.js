@@ -28,7 +28,7 @@ async function cargarGridDesdeAPI() {
                 gridContainer.appendChild(col);
             }
         } catch (e) {
-            console.error("Error al cargar show inicial:", e);
+            console.error(e);
         }
     }
 }
@@ -46,8 +46,7 @@ async function procesarRecomendacion() {
         const javaRes = await fetch(`http://localhost:8080/api/recomendacion?genero=${genre}&animo=${mood}&tiempo=${time}`);
         const javaData = await javaRes.json();
         
-        consoleDiv.innerHTML += `> <span class="text-primary">[SUCCESS 200]</span> Respuesta de IA: ${javaData.titulo}<br>`;
-        consoleDiv.innerHTML += `> [API NETWORK] Buscando metadata de "${javaData.titulo}" en TVMaze API...<br>`;
+        consoleDiv.innerHTML += `> [SUCCESS] Respuesta de IA: ${javaData.titulo}<br>`;
         consoleDiv.scrollTop = consoleDiv.scrollHeight;
 
         const tvmazeRes = await fetch(`https://api.tvmaze.com/search/shows?q=${javaData.titulo}`);
@@ -61,16 +60,11 @@ async function procesarRecomendacion() {
             document.getElementById('mainMetadata').innerText = `${genre} • ${time} • ${mood}`;
             document.getElementById('badgeMatch').classList.remove('d-none');
             
-            consoleDiv.innerHTML += `> <span class="text-warning">[SUCCESS]</span> Imágenes y Sinopsis descargadas correctamente.<br>`;
-        } else {
-            consoleDiv.innerHTML += `> <span class="text-danger">[ERROR]</span> No se encontró metadata en la API pública.<br>`;
+            consoleDiv.innerHTML += `> [SUCCESS] Metadata descargada.<br>`;
         }
-        
         consoleDiv.scrollTop = consoleDiv.scrollHeight;
-
     } catch (error) {
-        consoleDiv.innerHTML += `> <span class="text-danger">[ERROR CRÍTICO]</span> El servidor Java no responde. ¿Está corriendo en el puerto 8080?<br>`;
-        consoleDiv.scrollTop = consoleDiv.scrollHeight;
+        consoleDiv.innerHTML += `> [ERROR] Servidor Java no responde.<br>`;
     }
 }
 
@@ -94,6 +88,6 @@ async function abrirDetallesExterna(showId) {
         currentMovieData = data;
         abrirDetallesModal();
     } catch (e) {
-        console.error("Error al obtener detalles del show:", e);
+        console.error(e);
     }
 }
